@@ -2,20 +2,23 @@ pipeline {
   agent any
 
   environment {
-    DOCKERHUB_CREDENTIALS = 'dockerhub-creds'  // We'll create this inside Jenkins
+    DOCKERHUB_CREDENTIALS = 'dockerhub-creds'  // Make sure this is created in Jenkins
     IMAGE_NAME = 'suryasuraj/devnotex-backend'
   }
 
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/suryadwd/DEVOPS_PROJ.git'
+        git branch: 'main', url: 'https://github.com/suryadwd/DEVOPS_PROJ.git'
       }
     }
 
     stage('Build Docker Image') {
       steps {
-        sh 'docker build -t $IMAGE_NAME ./backend'
+        sh '''
+          docker system prune -af || true
+          docker build -t $IMAGE_NAME ./backend
+        '''
       }
     }
 
