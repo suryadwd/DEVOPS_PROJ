@@ -10,3 +10,6 @@ yay -S kubectl-bin
 # verify both
 kind version
 kubectl version --client
+
+# Create kind cluster from config
+kind create cluster --config kind-config.yaml
