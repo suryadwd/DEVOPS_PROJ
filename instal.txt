@@ -13,3 +13,8 @@ kubectl version --client
 
 # Create kind cluster from config
 kind create cluster --config kind-config.yaml
+
+# Check if working
+kubectl get nodes
+
+
