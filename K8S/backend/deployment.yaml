@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: devnotex
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: suryasuraj/devnotex-backend
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+
+# kubectl apply -f K8S/backend/deployment.yaml
